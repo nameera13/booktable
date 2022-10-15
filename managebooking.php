@@ -18,7 +18,7 @@
 
         <div class="col-md-8">
             <table class="table">
-                <tr>
+                <tr>    
                     <th>Id</th>
                     <th>Bookday</th>
                     <th>DateTime</th>
@@ -35,7 +35,7 @@
                 
                 <tr>
                     <td><?php echo $data["id"];?></td>
-                    <td><?php echo $data["bookday"];?></td>
+                    <td><?php echo $data["Day"];?></td>
                     <td><?php echo $data["datetime"];?></td>
                     <td><?php echo $data["firstname"];?></td>
                     <td><?php echo $data["lastname"];?></td>

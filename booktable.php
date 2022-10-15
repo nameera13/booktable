@@ -91,7 +91,7 @@ else
                 <input type="number" name="phone" class="form-control" placeholder="Mobile" data-bvalidator="number,minlen[10],maxlen[10],required"  data-bvalidator-msg="Please Enter valid Mobile Number" >
             </div>
             <div class="form-group mt-4">
-                <button type="submit" name="booktable"  class="btn btn-outline-success">Book your Table >></button>
+                <button type="submit" name="book"  class="btn btn-outline-success">Book your Table >></button>
             </div>
         </form>
         </div>

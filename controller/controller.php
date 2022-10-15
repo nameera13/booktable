@@ -46,8 +46,9 @@ class controller extends model
         $selectday=$this->selectalldata('bookday');
 
         // booktable
-        if(isset($_POST["booktable"]))
+        if(isset($_POST["book"]))
         {
+            $rid=$_SESSION["rid"];
             $selectday=$_POST["day"];
             $date_time=$_POST["datetime"];
             $fname=$_POST["fname"];
@@ -55,7 +56,7 @@ class controller extends model
             $email=$_POST["email"];
             $phone=$_POST["phone"];
             
-            $data=array("bookday"=>$selectday,"datetime"=>$date_time,"firstname"=>$fname,"lastname"=>$lname,"email"=>$email,"phone"=>$phone);
+            $data=array("r_id"=>$rid,"bookday"=>$selectday,"datetime"=>$date_time,"firstname"=>$fname,"lastname"=>$lname,"email"=>$email,"phone"=>$phone);
             $check=$this->insertdata('booktable',$data);
             if($check)
             {
@@ -104,8 +105,11 @@ class controller extends model
         } 
 
         // managebooking
-        
-        $shwbooking=$this->managebooking('booktable');
+        if(isset($_SESSION["rid"]))
+        {
+        $rid=$_SESSION["rid"];
+        $shwbooking=$this->managebooking('booktable','bookday','bookday.id=booktable.bookday','r_id',$rid);
+        }
 
         // update users
         if(isset($_POST["upd"]))
@@ -128,9 +132,16 @@ class controller extends model
 
         }
 
-        // count users
-        $count =$this->count('booktable','id');
+        if(isset($_SESSION["rid"]))
+        {
+            $rid=$_SESSION["rid"];
 
+        // count users
+
+        $count =$this->count('booktable','r_id',$rid);
+
+        }
+        
         // changepassword
         if(isset($_POST["change"]))
             {
@@ -287,6 +298,12 @@ class controller extends model
                     require_once("managebooking.php");
                     require_once("footer.php");
                     break;
+
+                default:
+                require_once("index.php");
+                require_once("header.php");
+                require_once("404.php");
+                break;
             
             }
         }

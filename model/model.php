@@ -24,7 +24,6 @@ class model
         $kk=implode(",",$k);
         $v=array_values($data);
         $vv=implode("','",$v);
-
         $insert="insert into $table($kk) values('$vv')";
         $exe=mysqli_query($this->conn,$insert);
         return $exe;
@@ -71,7 +70,7 @@ class model
         $v=array_values($data);
         $vv=implode("','",$v);  
 
-        $insert="insert into $table($kk) values('$vv')";
+      echo  $insert="insert into $table($kk) values('$vv')"; exit();
         $exe=mysqli_query($this->conn,$insert);
         return $exe;
     }
@@ -89,9 +88,9 @@ class model
     }
 
     // create a member function for managebooking
-    public function managebooking($table)
+    public function managebooking($table,$table1,$where,$column,$rid)
     {
-        $select="select * from $table";
+        $select="select * from $table join $table1 on $where where $column='$rid'";
         $exe=mysqli_query($this->conn,$select);
         while($fetch=mysqli_fetch_array($exe))
         {
@@ -109,9 +108,9 @@ class model
     }
 
     // create a member function for count all Table
-    public function count($table,$column)
+    public function count($table,$column,$rid)
     {
-        $sel="select count($column) as total from $table";
+        $sel="select count($column) as total from $table where $column='$rid'";
         $exe=mysqli_query($this->conn,$sel);
         while($fetch=mysqli_fetch_array($exe))
         {
